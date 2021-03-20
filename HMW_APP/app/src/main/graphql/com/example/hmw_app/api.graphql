@@ -1,0 +1,11 @@
+query testquery {
+    posts(where: {id: {_eq: 1}}) {
+        id
+        image
+        comments {
+            id
+            user_id
+            body_content
+        }
+    }
+}
