@@ -14,13 +14,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.homemellow_app.R;
-import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.data.LoginData;
 import com.example.homemellow_app.data.LoginResponse;
+import com.example.homemellow_app.network.APIInterface;
+import com.example.homemellow_app.data.Post;
+import com.example.homemellow_app.network.Endpoint;
+import com.ramkishorevs.graphqlconverter.converter.GraphQLConverter;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
     private AutoCompleteTextView mEmailView;
@@ -28,7 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button mEmailLoginButton;
     private Button mJoinButton;
     private ProgressBar mProgressView;
-    private ServiceApi service;
+    private APIInterface service;
+    private Retrofit retrofitclient;
+    private HttpLoggingInterceptor logging;
     Boolean sig_login = false;
 
     @Override
@@ -41,7 +49,21 @@ public class LoginActivity extends AppCompatActivity {
         mJoinButton = (Button) findViewById(R.id.join_button);
         mProgressView = (ProgressBar) findViewById(R.id.login_progress);
 
-        service = RetrofitClient.getClient().create(ServiceApi.class);
+
+        logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+
+        retrofitclient = new Retrofit.Builder()
+                .baseUrl(Endpoint.BASE_URL)
+                .addConverterFactory(GraphQLConverter.create(this))
+                .client(client)
+                .build();
+
+        service = retrofitclient.create(APIInterface.class);
 
         mEmailLoginButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -100,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void startLogin(LoginData data) {
-        service.userLogin(data).enqueue(new Callback<LoginResponse>() {
+        service.getResponse().enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
