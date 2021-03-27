@@ -5,26 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class StoreResponse {
 
-    @SerializedName("message")
-    @Expose
-    private String message;
-    @SerializedName("name")
-    @Expose
-    private CharSequence name = null;
-    @SerializedName("cost")
-    @Expose
-    private CharSequence cost = null;
+    @SerializedName("id")
+    private int id;
+    @SerializedName("image")
+    private String image;
 
-    public String getMessage() {
-        return message;
+    public int getId() {
+        return id;
     }
 
-    public CharSequence getName() {
-        return name;
-    }
-
-    public CharSequence getCost() {
-        return cost;
+    public String getImage() {
+        return image;
     }
 
 }

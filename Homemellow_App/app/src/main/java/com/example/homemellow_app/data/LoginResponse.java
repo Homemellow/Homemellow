@@ -2,6 +2,7 @@ package com.example.homemellow_app.data;
 
 import com.google.gson.annotations.SerializedName;
 
+
 public class LoginResponse {
     @SerializedName("code")
     private int code;
