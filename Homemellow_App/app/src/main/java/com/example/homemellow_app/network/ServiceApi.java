@@ -6,6 +6,7 @@ import com.example.homemellow_app.data.LoginData;
 import com.example.homemellow_app.data.LoginResponse;
 import com.example.homemellow_app.data.StoreResponse;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -14,7 +15,7 @@ import retrofit2.http.Query;
 public interface ServiceApi {
 
     @POST("/v1/graphql")
-    Call<StoreResponse> storeData(@Query("query") String toreQuery);
+    Call<ResponseBody> getStoreData(@Query("query") String toreQuery);
 
     @POST("/v1/graphql")
     Call<LoginResponse> userLogin(@Body LoginData data);

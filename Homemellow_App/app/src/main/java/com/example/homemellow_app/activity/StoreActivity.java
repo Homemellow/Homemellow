@@ -10,16 +10,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.homemellow_app.R;
+import com.example.homemellow_app.data.PostsData;
 import com.example.homemellow_app.data.StoreData;
 import com.example.homemellow_app.data.StoreResponse;
 import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.network.ServiceApi;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.IOException;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StoreActivity extends AppCompatActivity {
     private TextView nameText;
@@ -39,6 +44,13 @@ public class StoreActivity extends AppCompatActivity {
 
             service = RetrofitClient.getClient().create(ServiceApi.class);
 
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://15.164.84.132:8080/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            ServiceApi trendingInterface = retrofit.create(ServiceApi.class);
+
             loadData();
 
             //nameText.setText(data.getItemName());
@@ -46,17 +58,28 @@ public class StoreActivity extends AppCompatActivity {
         }
 
         public void loadData() {
-            String storeQuery = "query testquery { posts(where: {id: {_eq: \"1\"}}) { id\nimage\ncomments{id\nuser_id\nbody_content}}}";
-            service.storeData(storeQuery).enqueue(new Callback<StoreResponse>() {
+            String storeQuery = "query testquery { posts(where: {id: {_eq: \"1\"}}) { id\nimage\n}}";
+            service.getStoreData(storeQuery).enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onResponse(Call<StoreResponse> call, Response<StoreResponse> response) {
-                    System.out.println("Response");
-                    System.out.println("id :" + response.body().getId());
-                    System.out.println("image :" + response.body().getImage());
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()){
+                        System.out.println("Response");
+                        ResponseBody responseBody = response.body();
+                        try {
+                            System.out.println("id :" + responseBody.string());
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+                        Log.d("connect","fail");
+                    }
+
                 }
 
                 @Override
-                public void onFailure(Call<StoreResponse> call, Throwable t) {
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
                     System.out.println("failure");
 
                 }
