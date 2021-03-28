@@ -14,7 +14,7 @@ public class PostsData {
         return posts;
     }
 
-    public void setPosts(List<StoreData> posts) {
+    public void setPosts(List<StoreData> posts){
         this.posts = posts;
     }
 

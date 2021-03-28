@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.homemellow_app.R;
@@ -15,6 +16,7 @@ import com.example.homemellow_app.data.StoreData;
 import com.example.homemellow_app.data.StoreResponse;
 import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.network.ServiceApi;
+import com.google.gson.JsonParseException;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class StoreActivity extends AppCompatActivity {
     private TextView nameText;
@@ -46,10 +49,12 @@ public class StoreActivity extends AppCompatActivity {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://15.164.84.132:8080/")
+                    .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            ServiceApi trendingInterface = retrofit.create(ServiceApi.class);
+            service = retrofit.create(ServiceApi.class);
+
 
             loadData();
 
@@ -58,18 +63,25 @@ public class StoreActivity extends AppCompatActivity {
         }
 
         public void loadData() {
-            String storeQuery = "query testquery { posts(where: {id: {_eq: \"1\"}}) { id\nimage\n}}";
-            service.getStoreData(storeQuery).enqueue(new Callback<ResponseBody>() {
+
+            String storeQuery = "{\"query\":\"query testquery {\n" +
+                    "  posts(where: {id: {_eq: 1}}){\n" +
+                    "    id\n" +
+                    "    image\n" +
+                    "    comments{\n" +
+                    "      id\n" +
+                    "      user_id\n" +
+                    "      body_content\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "}\"}";
+            service.getStoreData(storeQuery).enqueue(new Callback<String>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(Call<String> call, Response<String> response) {
                     if(response.isSuccessful()){
                         System.out.println("Response");
-                        ResponseBody responseBody = response.body();
-                        try {
-                            System.out.println("id :" + responseBody.string());
-                        } catch (IOException ioException) {
-                            ioException.printStackTrace();
-                        }
+                        String responseBody = response.body().toString();
+                        System.out.println("id :" + responseBody);
                     }
                     else
                     {
@@ -79,7 +91,7 @@ public class StoreActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<String> call, Throwable t) {
                     System.out.println("failure");
 
                 }

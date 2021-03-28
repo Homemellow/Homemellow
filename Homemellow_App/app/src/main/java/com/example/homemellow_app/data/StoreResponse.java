@@ -7,14 +7,11 @@ public class StoreResponse {
 
     @SerializedName("data")
     @Expose
-    private PostsData data;
+    private String data;
 
-    public PostsData getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(PostsData data) {
-        this.data = data;
-    }
 
 }

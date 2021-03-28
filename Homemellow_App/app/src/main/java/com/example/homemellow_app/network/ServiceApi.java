@@ -9,13 +9,17 @@ import com.example.homemellow_app.data.StoreResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ServiceApi {
 
+    @Headers(
+            "content-type:application/json"
+    )
     @POST("/v1/graphql")
-    Call<ResponseBody> getStoreData(@Query("query") String toreQuery);
+    Call<String> getStoreData(@Body String toreQuery);
 
     @POST("/v1/graphql")
     Call<LoginResponse> userLogin(@Body LoginData data);
