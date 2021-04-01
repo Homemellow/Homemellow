@@ -6,20 +6,16 @@ import com.example.homemellow_app.data.LoginData;
 import com.example.homemellow_app.data.LoginResponse;
 import com.example.homemellow_app.data.StoreResponse;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface ServiceApi {
 
-    @Headers(
-            "content-type:application/json"
-    )
+    @Headers("content-type:application/json")
     @POST("/v1/graphql")
-    Call<String> getStoreData(@Body String toreQuery);
+    Call<StoreResponse> getStoreData(@Body String toreQuery);
 
     @POST("/v1/graphql")
     Call<LoginResponse> userLogin(@Body LoginData data);
