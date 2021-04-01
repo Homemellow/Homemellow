@@ -4,14 +4,16 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class StoreResponse {
-
     @SerializedName("data")
     @Expose
-    private String data;
+    private Data data;
 
-    public String getData() {
+    public Data getData() {
         return data;
     }
 
+    public void setData(Data data) {
+        this.data = data;
+    }
 
 }
