@@ -1,11 +1,11 @@
-package com.example.homemellow_app.data;
+package com.example.homemellow_app.data.login;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StoreResponse {
+public class LoginResponse {
+
     @SerializedName("data")
-    @Expose
     private Data data;
 
     public Data getData() {

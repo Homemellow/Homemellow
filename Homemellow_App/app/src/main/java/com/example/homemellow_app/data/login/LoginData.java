@@ -1,9 +1,9 @@
-package com.example.homemellow_app.data;
+package com.example.homemellow_app.data.login;
 
 import com.google.gson.annotations.SerializedName;
 
 public class LoginData {
-    @SerializedName("email")
+    @SerializedName("id")
     String userEmail;
 
     @SerializedName("passwd")

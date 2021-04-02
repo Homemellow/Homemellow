@@ -1,4 +1,4 @@
-package com.example.homemellow_app.data;
+package com.example.homemellow_app.data.store;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

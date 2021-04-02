@@ -16,10 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.homemellow_app.R;
 import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.network.ServiceApi;
-import com.example.homemellow_app.data.LoginData;
-import com.example.homemellow_app.data.LoginResponse;
-
-import java.util.regex.MatchResult;
+import com.example.homemellow_app.data.login.LoginData;
+import com.example.homemellow_app.data.login.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,7 +85,9 @@ public class LoginActivity extends AppCompatActivity {
             mEmailView.setError("이메일을 입력해주세요.");
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        }
+
+        else if (!isEmailValid(email)) {
             mEmailView.setError("@를 포함한 유효한 이메일을 입력해주세요.");
             focusView = mEmailView;
             cancel = true;
@@ -103,19 +103,31 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void startLogin(LoginData data) {
-        service.userLogin(data).enqueue(new Callback<LoginResponse>() {
+        String loginQuery = "query testquery {\n" +
+                "  users(where: {id: {_eq: \"testid@test.com\"}}) {\n" +
+                "    user_id\n" +
+                "    passwd\n" +
+                "    hp_num\n" +
+                "    nickname\n" +
+                "    id\n" +
+                "  }\n" +
+                "}";
+        service.userLogin(loginQuery).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
-                Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
 
-                System.out.println("code : " + result.getCode());
+                System.out.println("id : " + result.getData().getUsers().get(0).toString());
+                /*
                 if(result.getCode() == 200)
                 {
                     Intent intent = new Intent(getApplicationContext(), StoreActivity.class);
                     startActivity(intent);
                 }
+
+                 */
             }
 
             @Override
