@@ -5,6 +5,7 @@ import com.example.homemellow_app.data.JoinResponse;
 import com.example.homemellow_app.data.login.LoginData;
 import com.example.homemellow_app.data.login.LoginResponse;
 import com.example.homemellow_app.data.store.StoreResponse;
+import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -19,7 +20,7 @@ public interface ServiceApi {
 
     @Headers("content-type:application/json")
     @POST("/v1/graphql")
-    Call<LoginResponse> userLogin(@Body String loginQuery);
+    Call<LoginResponse> userLogin(@Body LoginData loginData);
 
     @Headers("content-type:application/json")
     @POST("/users/register")

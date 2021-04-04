@@ -14,10 +14,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.homemellow_app.R;
+import com.example.homemellow_app.data.store.StoreResponse;
 import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.network.ServiceApi;
 import com.example.homemellow_app.data.login.LoginData;
 import com.example.homemellow_app.data.login.LoginResponse;
+import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,14 +114,14 @@ public class LoginActivity extends AppCompatActivity {
                 "    id\n" +
                 "  }\n" +
                 "}";
-        service.userLogin(loginQuery).enqueue(new Callback<LoginResponse>() {
+        service.userLogin(data).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
 //                Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
 
-                System.out.println("id : " + result.getData().getUsers().get(0).toString());
+                System.out.println("id : " + result.getData().toString());
                 /*
                 if(result.getCode() == 200)
                 {
