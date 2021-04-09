@@ -13,8 +13,12 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".activity.LoginActivity"
-            android:label="@string/app_name">
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.homemellow_app.activity.MainActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -22,6 +26,7 @@
         </activity>
         <activity android:name=".activity.StoreActivity"></activity>
         <activity android:name=".activity.JoinActivity"></activity>
+        <activity  android:name=".activity.LoginActivity"></activity>
     </application>
 
 </manifest>
