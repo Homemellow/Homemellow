@@ -3,13 +3,22 @@ package com.example.homemellow_app.activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.homemellow_app.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+    private BottomNavigationView mBottomNV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +27,23 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+/*
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
+*/
+        mBottomNV = findViewById(R.id.nav_view);
+        mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { //NavigationItemSelecte
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                BottomNavigate(menuItem.getItemId());
+
+
+                return true;
+            }
+        });
+        mBottomNV.setSelectedItemId(R.id.navigation_1);
     }
 
     @Override
@@ -49,5 +75,39 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
+        String tag = String.valueOf(id);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Fragment currentFragment = fragmentManager.getPrimaryNavigationFragment();
+        if (currentFragment != null) {
+            fragmentTransaction.hide(currentFragment);
+        }
+
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+        if (fragment == null) {
+            if (id == R.id.navigation_1) {
+                fragment = new FragmentPage1();
+
+            } else if (id == R.id.navigation_2){
+
+                fragment = new FragmentPage2();
+            }else {
+                fragment = new FragmentPage3();
+            }
+
+            fragmentTransaction.add(R.id.content_layout, fragment, tag);
+        } else {
+            fragmentTransaction.show(fragment);
+        }
+
+        fragmentTransaction.setPrimaryNavigationFragment(fragment);
+        fragmentTransaction.setReorderingAllowed(true);
+        fragmentTransaction.commitNow();
+
+
     }
 }
