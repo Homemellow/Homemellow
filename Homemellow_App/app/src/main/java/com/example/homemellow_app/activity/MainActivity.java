@@ -5,20 +5,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.homemellow_app.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity{
     ImageView bottom_1;
@@ -26,7 +21,12 @@ public class MainActivity extends AppCompatActivity{
     ImageView bottom_3;
     ImageView bottom_4;
     ImageView bottom_5;
-    int bar_stat = 1;
+
+    LinearLayout navigation_1;
+    LinearLayout navigation_2;
+    LinearLayout navigation_3;
+    LinearLayout navigation_4;
+    LinearLayout navigation_5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,71 @@ public class MainActivity extends AppCompatActivity{
         bottom_4 = findViewById(R.id.bottom_4_img);
         bottom_5 = findViewById(R.id.bottom_5_img);
 
+        navigation_1 = findViewById(R.id.navigation_1);
+        navigation_2 = findViewById(R.id.navigation_2);
+        navigation_3 = findViewById(R.id.navigation_3);
+        navigation_4 = findViewById(R.id.navigation_4);
+        navigation_5 = findViewById(R.id.navigation_5);
+
+        navigation_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottom_1.setColorFilter(Color.parseColor("#f28705"));
+                bottom_2.setColorFilter(Color.parseColor("#707070"));
+                bottom_3.setColorFilter(Color.parseColor("#707070"));
+                bottom_4.setColorFilter(Color.parseColor("#707070"));
+                bottom_5.setColorFilter(Color.parseColor("#707070"));
+                callFragment(1);
+            }
+        });
+
+        navigation_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottom_1.setColorFilter(Color.parseColor("#707070"));
+                bottom_2.setColorFilter(Color.parseColor("#f28705"));
+                bottom_3.setColorFilter(Color.parseColor("#707070"));
+                bottom_4.setColorFilter(Color.parseColor("#707070"));
+                bottom_5.setColorFilter(Color.parseColor("#707070"));
+                callFragment(2);
+            }
+        });
+
+        navigation_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottom_1.setColorFilter(Color.parseColor("#707070"));
+                bottom_2.setColorFilter(Color.parseColor("#707070"));
+                bottom_3.setColorFilter(Color.parseColor("#f28705"));
+                bottom_4.setColorFilter(Color.parseColor("#707070"));
+                bottom_5.setColorFilter(Color.parseColor("#707070"));
+                callFragment(3);
+            }
+        });
+
+        navigation_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottom_1.setColorFilter(Color.parseColor("#707070"));
+                bottom_2.setColorFilter(Color.parseColor("#707070"));
+                bottom_3.setColorFilter(Color.parseColor("#707070"));
+                bottom_4.setColorFilter(Color.parseColor("#f28705"));
+                bottom_5.setColorFilter(Color.parseColor("#707070"));
+                callFragment(4);
+            }
+        });
+
+        navigation_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottom_1.setColorFilter(Color.parseColor("#707070"));
+                bottom_2.setColorFilter(Color.parseColor("#707070"));
+                bottom_3.setColorFilter(Color.parseColor("#707070"));
+                bottom_4.setColorFilter(Color.parseColor("#707070"));
+                bottom_5.setColorFilter(Color.parseColor("#f28705"));
+                callFragment(5);
+            }
+        });
     }
 
     @Override
@@ -112,69 +177,4 @@ public class MainActivity extends AppCompatActivity{
         }
 
     }
-
-public Boolean oonClickListern
-        
-    public void setBottom_1(View v){
-        if(bar_stat != 1){
-            bar_stat = 1;
-            bottom_1.setColorFilter(Color.parseColor("#f28705"));
-            bottom_2.setColorFilter(Color.parseColor("#707070"));
-            bottom_3.setColorFilter(Color.parseColor("#707070"));
-            bottom_4.setColorFilter(Color.parseColor("#707070"));
-            bottom_5.setColorFilter(Color.parseColor("#707070"));
-            callFragment(1);
-        }
-    }
-
-    public void setBottom_2(View v){
-        if(bar_stat != 2){
-            bar_stat = 2;
-            bottom_1.setColorFilter(Color.parseColor("#707070"));
-            bottom_2.setColorFilter(Color.parseColor("#f28705"));
-            bottom_3.setColorFilter(Color.parseColor("#707070"));
-            bottom_4.setColorFilter(Color.parseColor("#707070"));
-            bottom_5.setColorFilter(Color.parseColor("#707070"));
-            callFragment(2);
-        }
-    }
-
-    public void setBottom_3(View v){
-        if(bar_stat != 3){
-            bar_stat = 3;
-            bottom_1.setColorFilter(Color.parseColor("#707070"));
-            bottom_2.setColorFilter(Color.parseColor("#707070"));
-            bottom_3.setColorFilter(Color.parseColor("#f28705"));
-            bottom_4.setColorFilter(Color.parseColor("#707070"));
-            bottom_5.setColorFilter(Color.parseColor("#707070"));
-            callFragment(3);
-        }
-    }
-
-    public void setBottom_4(View v){
-        if(bar_stat != 4){
-            bar_stat = 4;
-            bottom_1.setColorFilter(Color.parseColor("#707070"));
-            bottom_2.setColorFilter(Color.parseColor("#707070"));
-            bottom_3.setColorFilter(Color.parseColor("#707070"));
-            bottom_4.setColorFilter(Color.parseColor("#f28705"));
-            bottom_5.setColorFilter(Color.parseColor("#707070"));
-            callFragment(4);
-        }
-    }
-
-    public void setBottom_5(View v){
-        if(bar_stat != 5){
-            bar_stat = 5;
-            bottom_1.setColorFilter(Color.parseColor("#707070"));
-            bottom_2.setColorFilter(Color.parseColor("#707070"));
-            bottom_3.setColorFilter(Color.parseColor("#707070"));
-            bottom_4.setColorFilter(Color.parseColor("#707070"));
-            bottom_5.setColorFilter(Color.parseColor("#f28705"));
-            callFragment(5);
-        }
-    }
-
-
-
 }
