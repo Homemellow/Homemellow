@@ -4,11 +4,14 @@
 
     <item android:id="@+id/btn_search"
         android:title="버튼1"
+        android:icon="@drawable/top_search"
         app:showAsAction="always" />
     <item android:id="@+id/btn_bookmark"
         android:title="버튼4"
+        android:icon="@drawable/top_bookmark"
         app:showAsAction="always"/>
     <item android:id="@+id/btn_cart"
         android:title="버튼4"
+        android:icon="@drawable/top_cart"
         app:showAsAction="always"/>
 </menu>
