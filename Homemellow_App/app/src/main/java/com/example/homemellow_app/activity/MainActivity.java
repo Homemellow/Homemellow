@@ -1,112 +1,41 @@
 package com.example.homemellow_app.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.homemellow_app.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity{
-    ImageView bottom_1;
-    ImageView bottom_2;
-    ImageView bottom_3;
-    ImageView bottom_4;
-    ImageView bottom_5;
-
-    LinearLayout navigation_1;
-    LinearLayout navigation_2;
-    LinearLayout navigation_3;
-    LinearLayout navigation_4;
-    LinearLayout navigation_5;
+public class MainActivity extends AppCompatActivity {
+    private BottomNavigationView mBottomNV;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        bottom_1 = findViewById(R.id.bottom_1_img);
-        bottom_2 = findViewById(R.id.bottom_2_img);
-        bottom_3 = findViewById(R.id.bottom_3_img);
-        bottom_4 = findViewById(R.id.bottom_4_img);
-        bottom_5 = findViewById(R.id.bottom_5_img);
+        mBottomNV = findViewById(R.id.nav_view);
+        mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        navigation_1 = findViewById(R.id.navigation_1);
-        navigation_2 = findViewById(R.id.navigation_2);
-        navigation_3 = findViewById(R.id.navigation_3);
-        navigation_4 = findViewById(R.id.navigation_4);
-        navigation_5 = findViewById(R.id.navigation_5);
-
-        navigation_1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                bottom_1.setColorFilter(Color.parseColor("#f28705"));
-                bottom_2.setColorFilter(Color.parseColor("#707070"));
-                bottom_3.setColorFilter(Color.parseColor("#707070"));
-                bottom_4.setColorFilter(Color.parseColor("#707070"));
-                bottom_5.setColorFilter(Color.parseColor("#707070"));
-                callFragment(1);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                BottomNavigate(menuItem.getItemId());
+                return true;
             }
         });
-
-        navigation_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottom_1.setColorFilter(Color.parseColor("#707070"));
-                bottom_2.setColorFilter(Color.parseColor("#f28705"));
-                bottom_3.setColorFilter(Color.parseColor("#707070"));
-                bottom_4.setColorFilter(Color.parseColor("#707070"));
-                bottom_5.setColorFilter(Color.parseColor("#707070"));
-                callFragment(2);
-            }
-        });
-
-        navigation_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottom_1.setColorFilter(Color.parseColor("#707070"));
-                bottom_2.setColorFilter(Color.parseColor("#707070"));
-                bottom_3.setColorFilter(Color.parseColor("#f28705"));
-                bottom_4.setColorFilter(Color.parseColor("#707070"));
-                bottom_5.setColorFilter(Color.parseColor("#707070"));
-                callFragment(3);
-            }
-        });
-
-        navigation_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottom_1.setColorFilter(Color.parseColor("#707070"));
-                bottom_2.setColorFilter(Color.parseColor("#707070"));
-                bottom_3.setColorFilter(Color.parseColor("#707070"));
-                bottom_4.setColorFilter(Color.parseColor("#f28705"));
-                bottom_5.setColorFilter(Color.parseColor("#707070"));
-                callFragment(4);
-            }
-        });
-
-        navigation_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottom_1.setColorFilter(Color.parseColor("#707070"));
-                bottom_2.setColorFilter(Color.parseColor("#707070"));
-                bottom_3.setColorFilter(Color.parseColor("#707070"));
-                bottom_4.setColorFilter(Color.parseColor("#707070"));
-                bottom_5.setColorFilter(Color.parseColor("#f28705"));
-                callFragment(5);
-            }
-        });
+        mBottomNV.setSelectedItemId(R.id.navigation_1);
     }
 
     @Override
@@ -140,41 +69,48 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private void callFragment(int fragment_no) {
+    private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
+        if (id == R.id.navigation_1) {
+            toolbar.setTitle("홈");
+        } else if (id == R.id.navigation_2){
+            toolbar.setTitle("스토어");
+        } else if (id == R.id.navigation_3){
+            toolbar.setTitle("피드");
+        } else if (id == R.id.navigation_4){
+            toolbar.setTitle("Q&A");
+        }else {
+            toolbar.setTitle("");
+        }
+        String tag = String.valueOf(id);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        // 프래그먼트 사용을 위해
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        switch (fragment_no) {
-            case 1:
-                // '프래그먼트1' 호출
-                Fragment fragment1 = new FragmentPage1();
-                transaction.replace(R.id.content_layout, fragment1);
-                transaction.commit();
-                break;
-
-            case 2:
-                // '프래그먼트2' 호출
-                Fragment fragment2 = new FragmentPage2();
-                transaction.replace(R.id.content_layout, fragment2);
-                transaction.commit();
-                break;
-            case 3:
-                Fragment fragment3 = new FragmentPage3();
-                transaction.replace(R.id.content_layout, fragment3);
-                transaction.commit();
-                break;
-            case 4:
-                Fragment fragment4 = new FragmentPage2();
-                transaction.replace(R.id.content_layout, fragment4);
-                transaction.commit();
-                break;
-            case 5:
-                Fragment fragment5 = new FragmentPage1();
-                transaction.replace(R.id.content_layout, fragment5);
-                transaction.commit();
-                break;
+        Fragment currentFragment = fragmentManager.getPrimaryNavigationFragment();
+        if (currentFragment != null) {
+            fragmentTransaction.hide(currentFragment);
         }
 
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+        if (fragment == null) {
+            if (id == R.id.navigation_1) {
+                fragment = new FragmentPage1();
+            } else if (id == R.id.navigation_2){
+                fragment = new FragmentPage2();
+            } else if (id == R.id.navigation_3){
+                fragment = new FragmentPage3();
+            } else if (id == R.id.navigation_4){
+                fragment = new FragmentPage2();
+            }else {
+                fragment = new MyPageActivity();
+            }
+
+            fragmentTransaction.add(R.id.content_layout, fragment, tag);
+        } else {
+            fragmentTransaction.show(fragment);
+        }
+
+        fragmentTransaction.setPrimaryNavigationFragment(fragment);
+        fragmentTransaction.setReorderingAllowed(true);
+        fragmentTransaction.commitNow();
     }
 }

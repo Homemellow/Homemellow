@@ -6,17 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff">
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="#ffffff"
+            app:elevation="0dp">
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/content_layout"
@@ -24,129 +20,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:background="#ffffff"
-        android:id="@+id/linearLayout">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:id="@+id/navigation_1"
-            android:onClick="main_home_btn">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bottom_1"
-                android:id="@+id/bottom_1_img"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="#000000"
-                android:letterSpacing="-0.05"
-                android:gravity="center_horizontal"
-                android:text="홈"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:onClick="main_fav_btn"
-            android:id="@+id/navigation_2">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bottom_2"
-                android:id="@+id/bottom_2_img"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="#000000"
-                android:letterSpacing="-0.05"
-                android:gravity="center_horizontal"
-                android:text="스토어"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:onClick="main_sale_btn"
-            android:id="@+id/navigation_3">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/bottom_3_img"
-                android:background="@drawable/bottom_3"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="#000000"
-                android:letterSpacing="-0.05"
-                android:gravity="center_horizontal"
-                android:text="피드"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:onClick="main_my_btn"
-            android:id="@+id/navigation_4">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/bottom_4_img"
-                android:background="@drawable/bottom_4"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="#000000"
-                android:letterSpacing="-0.05"
-                android:gravity="center_horizontal"
-                android:text="Q&amp;A"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:onClick="main_my_btn"
-            android:id="@+id/navigation_5">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/bottom_5_img"
-                android:background="@drawable/bottom_5"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="#000000"
-                android:letterSpacing="-0.05"
-                android:gravity="center_horizontal"
-                android:text="마이페이지"/>
-        </LinearLayout>
-
-
-    </LinearLayout>
-
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@drawable/menu_select_color"
+        app:itemTextColor="#000000"
+        app:menu="@menu/bottom_nav" />
 </LinearLayout>
