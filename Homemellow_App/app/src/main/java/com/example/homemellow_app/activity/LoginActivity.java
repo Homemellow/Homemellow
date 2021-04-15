@@ -105,23 +105,27 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void startLogin(LoginData data) {
-        String loginQuery = "query testquery {\n" +
-                "  users(where: {id: {_eq: \"testid@test.com\"}}) {\n" +
+        String loginQuery = "{\"query\":\"query testquery {\n" +
+                "  users{\n" +
                 "    user_id\n" +
                 "    passwd\n" +
                 "    hp_num\n" +
                 "    nickname\n" +
                 "    id\n" +
                 "  }\n" +
-                "}";
-        service.userLogin(data).enqueue(new Callback<LoginResponse>() {
+                "}\"}";
+        service.userLogin(loginQuery).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse result = response.body();
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+                    System.out.println("Response");
+                    String result = response.body();
+                    System.out.println("id :" + result);
+                }
+
 //                Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
 
-                System.out.println("id : " + result.getData().toString());
                 /*
                 if(result.getCode() == 200)
                 {
@@ -133,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 showProgress(false);
