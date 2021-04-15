@@ -20,10 +20,10 @@ public interface ServiceApi {
 
     @Headers("content-type:application/json")
     @POST("/v1/graphql")
-    Call<LoginResponse> userLogin(@Body LoginData loginData);
+    Call<String> userLogin(@Body String loginQuery);
 
     @Headers("content-type:application/json")
     @POST("/users/register")
-    Call<JoinResponse> userJoin(@Body JoinData data);
+    Call<String> userJoin(@Body String joinQuery);
 
 }

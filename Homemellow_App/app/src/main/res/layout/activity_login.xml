@@ -12,7 +12,7 @@
         android:id="@+id/toolbar_login"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#ffffff"
+        android:background="#f3f3f3"
         app:elevation="0dp">
     </androidx.appcompat.widget.Toolbar>
 
@@ -23,7 +23,7 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <ScrollView
+    <LinearLayout
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,9 +35,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                tools:text="아이디"/>
 
                 <AutoCompleteTextView
                     android:id="@+id/login_email"
@@ -46,13 +52,30 @@
                     android:hint="이메일"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="13sp"
+                    android:padding="15dp"
+                    android:background="@drawable/edittext"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font"
+                    android:textStyle="normal"
+                    android:textSize="11sp"
+                    android:textColor="#8e8e93"
+                    android:lineSpacingExtra="6sp"
+                    tools:text="도움말 텍스트 "/>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="6sp"
+                tools:text="비밀번호 "/>
 
                 <EditText
                     android:id="@+id/login_password"
@@ -61,27 +84,66 @@
                     android:hint="영문, 숫자 특수문자 포함 8자 이상"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:background="@drawable/edittext"
+                    android:textSize="13sp"
+                    android:padding="15dp"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font"
+                    android:textStyle="normal"
+                    android:textSize="11sp"
+                    android:textColor="#8e8e93"
+                    android:lineSpacingExtra="6sp"
+                    tools:text="도움말 텍스트 " />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font"
+                    android:textStyle="normal"
+                    android:textSize="11sp"
+                    android:textColor="#575555"
+                    android:lineSpacingExtra="6sp"
+                    android:gravity="center_horizontal"
+                    tools:text="아이디를 까먹으셨나요?"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font"
+                    android:textStyle="normal"
+                    android:textSize="11sp"
+                    android:textColor="#575555"
+                    android:lineSpacingExtra="6sp"
+                    android:gravity="center_horizontal"
+                    tools:text="비밀번호를 까먹으셨나요?"/>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/login_button"
+                android:background="@drawable/button_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:onClick="attemptLogin"
                 android:text="로그인"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/join_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="회원가입"
-                android:textStyle="bold" />
-
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="17sp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="8sp"
+                />
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 </LinearLayout>

@@ -1,13 +1,17 @@
 package com.example.homemellow_app.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -15,10 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.homemellow_app.R;
+import com.example.homemellow_app.data.store.StoreResponse;
 import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.network.ServiceApi;
 import com.example.homemellow_app.data.login.LoginData;
 import com.example.homemellow_app.data.login.LoginResponse;
+import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +44,11 @@ public class EmailLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.parseColor("#f3f3f3"));
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         Toolbar toolbar = findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,7 +57,6 @@ public class EmailLoginActivity extends AppCompatActivity {
         mEmailView = (AutoCompleteTextView) findViewById(R.id.login_email);
         mPasswordView = (EditText) findViewById(R.id.login_password);
         mEmailLoginButton = (Button) findViewById(R.id.login_button);
-        mJoinButton = (Button) findViewById(R.id.join_button);
         mProgressView = (ProgressBar) findViewById(R.id.login_progress);
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
@@ -55,13 +65,6 @@ public class EmailLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 attemptLogin();
-            }
-        });
-        mJoinButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -110,35 +113,38 @@ public class EmailLoginActivity extends AppCompatActivity {
 
 
     private void startLogin(LoginData data) {
-        String loginQuery = "query testquery {\n" +
-                "  users(where: {id: {_eq: \"testid@test.com\"}}) {\n" +
+        String loginQuery = "{\"query\":\"query testquery {\n" +
+                "  users{\n" +
                 "    user_id\n" +
                 "    passwd\n" +
                 "    hp_num\n" +
                 "    nickname\n" +
                 "    id\n" +
                 "  }\n" +
-                "}";
-        service.userLogin(data).enqueue(new Callback<LoginResponse>() {
+                "}\"}";
+        service.userLogin(loginQuery).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse result = response.body();
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+                    System.out.println("Response");
+                    String result = response.body();
+                    System.out.println("id :" + result);
+                }
+
 //                Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
 
-                System.out.println("id : " + result.getData().toString());
                 /*
                 if(result.getCode() == 200)
                 {
                     Intent intent = new Intent(getApplicationContext(), StoreActivity.class);
                     startActivity(intent);
                 }
-
                  */
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(EmailLoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 showProgress(false);
