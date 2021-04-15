@@ -11,22 +11,20 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.homemellow_app.R;
-import com.example.homemellow_app.data.store.StoreResponse;
 import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.network.ServiceApi;
 import com.example.homemellow_app.data.login.LoginData;
 import com.example.homemellow_app.data.login.LoginResponse;
-import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class EmailLoginActivity extends AppCompatActivity {
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private Button mEmailLoginButton;
@@ -40,8 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = findViewById(R.id.toolbar_login);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("이메일로 로그인");
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.login_email);
         mPasswordView = (EditText) findViewById(R.id.login_password);
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EmailLoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 showProgress(false);
             }

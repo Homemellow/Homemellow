@@ -14,7 +14,6 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".activity.MainActivity"
-            android:label=""
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -27,12 +26,8 @@
         <activity android:name=".activity.StoreActivity"></activity>
         <activity android:name=".activity.JoinActivity"></activity>
         <activity
-            android:name=".activity.LoginActivity"
-            android:label="이메일로 로그인"
+            android:name=".activity.EmailLoginActivity"
             android:parentActivityName=".activity.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity"/>
         </activity>
     </application>
 
