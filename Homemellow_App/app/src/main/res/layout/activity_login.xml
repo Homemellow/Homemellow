@@ -16,134 +16,100 @@
         app:elevation="0dp">
     </androidx.appcompat.widget.Toolbar>
 
-    <ProgressBar
-        android:id="@+id/login_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
     <LinearLayout
-        android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/kakao_login"
+            android:background="@drawable/kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="16dp"
+            android:text="카카오톡"
+            android:fontFamily="@font/font"
+            android:textStyle="normal"
+            android:textSize="17sp"
+            android:textColor="#575555"
+            android:lineSpacingExtra="8sp"
+            />
+
+        <Button
+            android:id="@+id/naver_login"
+            android:background="@drawable/naver_login"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="16dp"
+            android:text="네이버"
+            android:fontFamily="@font/font"
+            android:textStyle="normal"
+            android:textSize="17sp"
+            android:textColor="#f5f5f5"
+            android:lineSpacingExtra="8sp"
+            />
+
+        <Button
+            android:id="@+id/facebook_login"
+            android:background="@drawable/facebook_login"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="16dp"
+            android:text="페이스북"
+            android:fontFamily="@font/font"
+            android:textStyle="normal"
+            android:textSize="17sp"
+            android:textColor="#f5f5f5"
+            android:lineSpacingExtra="8sp"
+            />
+
+        <Button
+            android:id="@+id/google_login"
+            android:background="@drawable/google_login"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="16dp"
+            android:text="구글"
+            android:fontFamily="@font/font"
+            android:textStyle="normal"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="8sp"
+            />
 
         <LinearLayout
-            android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="11dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font"
-                android:lineSpacingExtra="6sp"
-                android:textColor="#000000"
-                android:textSize="13sp"
                 android:textStyle="normal"
-                tools:text="아이디"/>
-
-                <AutoCompleteTextView
-                    android:id="@+id/login_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="이메일"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textSize="13sp"
-                    android:padding="15dp"
-                    android:background="@drawable/edittext"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font"
-                    android:textStyle="normal"
-                    android:textSize="11sp"
-                    android:textColor="#8e8e93"
-                    android:lineSpacingExtra="6sp"
-                    tools:text="도움말 텍스트 "/>
+                android:textSize="13sp"
+                android:textColor="#575555"
+                android:lineSpacingExtra="6sp"
+                android:gravity="center"
+                android:text="이메일로 가입하기"
+                android:layout_marginRight="10dp"
+                android:id="@+id/email_register"/>
 
             <TextView
-                android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font"
                 android:textStyle="normal"
                 android:textSize="13sp"
-                android:textColor="#000000"
+                android:textColor="#575555"
                 android:lineSpacingExtra="6sp"
-                tools:text="비밀번호 "/>
-
-                <EditText
-                    android:id="@+id/login_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="영문, 숫자 특수문자 포함 8자 이상"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:background="@drawable/edittext"
-                    android:textSize="13sp"
-                    android:padding="15dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font"
-                    android:textStyle="normal"
-                    android:textSize="11sp"
-                    android:textColor="#8e8e93"
-                    android:lineSpacingExtra="6sp"
-                    tools:text="도움말 텍스트 " />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font"
-                    android:textStyle="normal"
-                    android:textSize="11sp"
-                    android:textColor="#575555"
-                    android:lineSpacingExtra="6sp"
-                    android:gravity="center_horizontal"
-                    tools:text="아이디를 까먹으셨나요?"
-                    android:layout_marginRight="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font"
-                    android:textStyle="normal"
-                    android:textSize="11sp"
-                    android:textColor="#575555"
-                    android:lineSpacingExtra="6sp"
-                    android:gravity="center_horizontal"
-                    tools:text="비밀번호를 까먹으셨나요?"/>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/login_button"
-                android:background="@drawable/button_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:onClick="attemptLogin"
-                android:text="로그인"
-                android:fontFamily="@font/font"
-                android:textStyle="normal"
-                android:textSize="17sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="8sp"
-                />
+                android:gravity="center"
+                android:text="이메일로 로그인하기"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/email_login"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -26,8 +26,12 @@
         <activity android:name=".activity.StoreActivity"></activity>
         <activity android:name=".activity.JoinActivity"></activity>
         <activity
-            android:name=".activity.EmailLoginActivity"
+            android:name=".activity.LoginActivity"
             android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.EmailLoginActivity"
+            android:parentActivityName=".activity.LoginActivity">
         </activity>
     </application>
 
