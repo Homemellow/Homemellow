@@ -1,6 +1,5 @@
 package com.example.homemellow_app.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (id == R.id.navigation_2){
                 fragment = new FragmentPage2();
             } else if (id == R.id.navigation_3){
-                fragment = new FragmentPage3();
+                fragment = new StoreActivity();
             } else if (id == R.id.navigation_4){
                 fragment = new FragmentPage2();
             }else {
