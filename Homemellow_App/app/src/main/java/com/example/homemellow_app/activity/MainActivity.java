@@ -104,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.navigation_1) {
                 fragment = new FragmentPage1();
             } else if (id == R.id.navigation_2){
-                fragment = new FragmentPage2();
-            } else if (id == R.id.navigation_3){
                 fragment = new StoreActivity();
+            } else if (id == R.id.navigation_3){
+                fragment = new FragmentPage2();
             } else if (id == R.id.navigation_4){
                 fragment = new FragmentPage2();
             }else {

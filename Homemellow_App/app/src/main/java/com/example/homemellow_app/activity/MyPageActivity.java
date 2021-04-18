@@ -34,7 +34,7 @@ public class MyPageActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.mypage, container, false);
+        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.activity_mypage, container, false);
 
         LinearLayout login = (LinearLayout)view.findViewById(R.id.login_try);
         login.setOnClickListener(new View.OnClickListener() {
