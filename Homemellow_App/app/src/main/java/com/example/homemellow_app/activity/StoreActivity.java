@@ -2,34 +2,28 @@ package com.example.homemellow_app.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.homemellow_app.R;
-import com.example.homemellow_app.databinding.ActivityMainBinding;
 import com.example.homemellow_app.databinding.ActivityStoreBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StoreActivity extends Fragment {
-
     private ActivityStoreBinding mBinding;
-    private Handler sliderHandler = new Handler();
-
     MainActivity mainActivity;
+    MyRecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
 
     @Override
     public void onAttach(Context context) {
@@ -49,6 +43,7 @@ public class StoreActivity extends Fragment {
         setHasOptionsMenu(true);
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.activity_store, container, false);
 
+        String[] data = {"홈가드닝", "홈파밍", "홈트레이닝", "홈쿡", "홈바", "홈파티", "홈바캉스", "홈시네마", "홈뷰티", "인테리어", "공예"};
         mBinding = ActivityStoreBinding.inflate(getLayoutInflater());
 
         List<String> sliderItems = new ArrayList<>();
@@ -60,7 +55,9 @@ public class StoreActivity extends Fragment {
         sliderItems.add("https://cdn.pixabay.com/photo/2019/10/15/13/33/red-deer-4551678_1280.jpg");
 
         mBinding.vpImageSlider.setAdapter(new SliderAdapter(view.getContext(), sliderItems));
-        
+        mBinding.storeRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        mBinding.storeRv.setAdapter(new MyRecyclerViewAdapter(getContext(), data));
+
         return mBinding.getRoot();
     }
     @Override
@@ -73,5 +70,4 @@ public class StoreActivity extends Fragment {
         super.onDestroy();
         mBinding = null;
     }
-
 }
