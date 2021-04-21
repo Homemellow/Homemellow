@@ -1,27 +1,22 @@
 package com.example.homemellow_app.activity;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.homemellow_app.R;
 import com.example.homemellow_app.databinding.ActivityStoreBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class StoreActivity extends Fragment {
     private ActivityStoreBinding mBinding;
@@ -47,6 +42,15 @@ public class StoreActivity extends Fragment {
 
         String[] data = {"홈가드닝", "홈파밍", "홈트레이닝", "홈베이킹", "홈쿡", "홈바", "홈파티", "홈바캉스", "홈시네마", "홈뷰티", "인테리어", "공예"};
         int[] imgList = {R.drawable.asset_1, R.drawable.asset_2, R.drawable.asset_3, R.drawable.asset_6, R.drawable.asset_12, R.drawable.asset_14, R.drawable.asset_8, R.drawable.asset_10, R.drawable.asset_11, R.drawable.asset_9, R.drawable.top_cart, R.drawable.top_cart};
+
+        String[] store_recommand_title = {"[10% + 카드할인] 방짜유기 + 보자기 세트", "[10% + 카드할인] 방짜유기 + 보자기 세트"};
+        String[] store_recommand_price = {"쇼킹딜가 36000원 ~", "쇼킹딜가 36000원 ~"};
+        int[] store_recommand_image = {R.drawable.banner, R.drawable.banner};
+
+        String[] store_event_title = {"[10% + 카드할인] 방짜유기 + 보자기 세트", "[10% + 카드할인] 방짜유기 + 보자기 세트"};
+        String[] store_event_price = {"쇼킹딜가 36000원 ~", "쇼킹딜가 36000원 ~"};
+        int[] store_event_image = {R.drawable.banner, R.drawable.banner};
+
         mBinding = ActivityStoreBinding.inflate(getLayoutInflater());
 
         List<String> sliderItems = new ArrayList<>();
@@ -58,8 +62,15 @@ public class StoreActivity extends Fragment {
         sliderItems.add("https://cdn.pixabay.com/photo/2019/10/15/13/33/red-deer-4551678_1280.jpg");
 
         mBinding.vpImageSlider.setAdapter(new SliderAdapter(view.getContext(), sliderItems));
+
         mBinding.storeRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
         mBinding.storeRv.setAdapter(new MyRecyclerViewAdapter(getContext(), data, imgList));
+
+        mBinding.storeRecommand.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.storeRecommand.setAdapter((new StoreRecommandRVAdapter(getContext(), store_event_title, store_event_price, store_event_image)));
+
+        mBinding.storeEvent.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.storeEvent.setAdapter((new StoreEventRVAdapter(getContext(), store_event_title, store_event_price, store_event_image)));
 
         return mBinding.getRoot();
     }
