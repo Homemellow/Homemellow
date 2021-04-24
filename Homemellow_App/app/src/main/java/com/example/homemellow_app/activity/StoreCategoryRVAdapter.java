@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homemellow_app.R;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class StoreCategoryRVAdapter extends RecyclerView.Adapter<StoreCategoryRVAdapter.ViewHolder> {
 
     private String[] mData = new String[0];
     private LayoutInflater mInflater;
     private int[] mImgList;
 
     // Data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, String[] data, int[] imgList) {
+    public StoreCategoryRVAdapter(Context context, String[] data, int[] imgList) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.mImgList = imgList;

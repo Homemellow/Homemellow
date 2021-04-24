@@ -13,14 +13,14 @@ import com.example.homemellow_app.databinding.SlideItemBinding;
 
 import java.util.List;
 
-public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
+public class StoreSliderRVAdapter extends RecyclerView.Adapter<StoreSliderRVAdapter.SliderViewHolder> {
 
     private static final String TAG = "SliderAdapter";
 
     private Context mContext;
     private List<String> sliderItems;
 
-    public SliderAdapter(Context context, List<String> sliderImage) {
+    public StoreSliderRVAdapter(Context context, List<String> sliderImage) {
         mContext = context;
         this.sliderItems = sliderImage;
     }

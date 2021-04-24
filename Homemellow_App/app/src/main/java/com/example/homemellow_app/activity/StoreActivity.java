@@ -20,19 +20,6 @@ import java.util.List;
 
 public class StoreActivity extends Fragment {
     private ActivityStoreBinding mBinding;
-    MainActivity mainActivity;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mainActivity = (MainActivity)getActivity();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mainActivity = null;
-    }
 
     @Nullable
     @Override
@@ -61,10 +48,10 @@ public class StoreActivity extends Fragment {
         sliderItems.add("https://cdn.pixabay.com/photo/2014/03/03/16/15/mosque-279015_1280.jpg");
         sliderItems.add("https://cdn.pixabay.com/photo/2019/10/15/13/33/red-deer-4551678_1280.jpg");
 
-        mBinding.vpImageSlider.setAdapter(new SliderAdapter(view.getContext(), sliderItems));
+        mBinding.vpImageSlider.setAdapter(new StoreSliderRVAdapter(view.getContext(), sliderItems));
 
         mBinding.storeRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        mBinding.storeRv.setAdapter(new MyRecyclerViewAdapter(getContext(), data, imgList));
+        mBinding.storeRv.setAdapter(new StoreCategoryRVAdapter(getContext(), data, imgList));
 
         mBinding.storeRecommand.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.storeRecommand.setAdapter((new StoreRecommandRVAdapter(getContext(), store_event_title, store_event_price, store_event_image)));

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="78dp"
+            android:layout_height="29dp"/>
+
+        <Spinner
+            android:id="@+id/qna_spinner"
+            android:layout_width="121dp"
+            android:layout_height="29dp"
+            android:entries="@array/qna"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp">
+        </Spinner>
+
+        <Button
+            android:layout_width="78dp"
+            android:layout_height="29dp"
+            android:background="@drawable/qna_post_button" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/qna_posts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+</layout>
