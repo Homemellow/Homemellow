@@ -54,7 +54,7 @@ public class StoreActivity extends Fragment {
         mBinding.storeRv.setAdapter(new StoreCategoryRVAdapter(getContext(), data, imgList));
 
         mBinding.storeRecommand.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.storeRecommand.setAdapter((new StoreRecommandRVAdapter(getContext(), store_event_title, store_event_price, store_event_image)));
+        mBinding.storeRecommand.setAdapter((new StoreRecommandRVAdapter(getContext(), store_recommand_title, store_recommand_price, store_recommand_image)));
 
         mBinding.storeEvent.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.storeEvent.setAdapter((new StoreEventRVAdapter(getContext(), store_event_title, store_event_price, store_event_image)));

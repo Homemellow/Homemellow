@@ -1,5 +1,4 @@
 package com.example.homemellow_app.activity;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.homemellow_app.R;
+import com.example.homemellow_app.activity.QnAPostsRVAdapter;
 import com.example.homemellow_app.databinding.ActivityQnaBinding;
 
 public class QnAActivity extends Fragment {
@@ -20,7 +21,7 @@ public class QnAActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.activity_qna, container, false);
+        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.activity_store, container, false);
 
         String[] title = {"홈가드닝", "홈파밍", "홈트레이닝", "홈베이킹", "홈쿡", "홈바", "홈파티", "홈바캉스", "홈시네마", "홈뷰티", "인테리어", "공예"};
         String[] content = {"홈가드닝", "홈파밍", "홈트레이닝", "홈베이킹", "홈쿡", "홈바", "홈파티", "홈바캉스", "홈시네마", "홈뷰티", "인테리어", "공예"};
@@ -30,12 +31,12 @@ public class QnAActivity extends Fragment {
         Integer[] view_cnt = {1, 2, 3, 4, 4, 2, 3, 7, 6, 7, 4, 9};
         Integer[] comment_cnt = {8, 4, 5, 9, 4, 7, 10, 5, 5, 2, 1, 6};
         Integer[] like_cnt = {1, 2, 1, 3, 3, 4, 6, 8, 5, 3, 5, 13};
-        int[] post_img = {R.drawable.asset_1, R.drawable.asset_2, R.drawable.asset_3, R.drawable.asset_6, R.drawable.asset_12, R.drawable.asset_14, R.drawable.asset_8, R.drawable.asset_10, R.drawable.asset_11, R.drawable.asset_9, R.drawable.top_cart, R.drawable.top_cart};
+        int[] post_img = {R.drawable.kakao_login, R.drawable.asset_2, R.drawable.asset_3, R.drawable.asset_6, R.drawable.asset_12, R.drawable.asset_14, R.drawable.asset_8, R.drawable.asset_10, R.drawable.asset_11, R.drawable.asset_9, R.drawable.top_cart, R.drawable.top_cart};
 
         mBinding = ActivityQnaBinding.inflate(getLayoutInflater());
 
         mBinding.qnaPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.qnaPosts.setAdapter((new QnAPostsRVAdapter(getContext(), title, content, nickname, profile_img, time, view_cnt, comment_cnt, like_cnt)));
+        mBinding.qnaPosts.setAdapter((new QnAPostsRVAdapter(getContext(), title, content, nickname, profile_img, time, view_cnt, comment_cnt, like_cnt, post_img)));
 
         return mBinding.getRoot();
     }

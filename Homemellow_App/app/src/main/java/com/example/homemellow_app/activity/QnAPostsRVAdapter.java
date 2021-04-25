@@ -23,10 +23,12 @@ public class QnAPostsRVAdapter extends RecyclerView.Adapter<QnAPostsRVAdapter.Vi
     private Integer[] view_cnt;
     private Integer[] comment_cnt;
     private Integer[] like_cnt;
+    private int[] post_img;
 
 
     // Data is passed into the constructor
-    public QnAPostsRVAdapter(Context context, String[] title, String[] content, String[] nickname, int[] profile_img, Integer[] time, Integer[] view_cnt, Integer[] comment_cnt, Integer[] like_cnt) {
+    public QnAPostsRVAdapter(Context context, String[] title, String[] content, String[] nickname, int[] profile_img, Integer[] time, Integer[] view_cnt, Integer[] comment_cnt, Integer[] like_cnt, int[] post_img) {
+        this.mInflater = LayoutInflater.from(context);
         this.title = title;
         this.content = content;
         this.nickname = nickname;
@@ -35,6 +37,7 @@ public class QnAPostsRVAdapter extends RecyclerView.Adapter<QnAPostsRVAdapter.Vi
         this.view_cnt = view_cnt;
         this.comment_cnt = comment_cnt;
         this.like_cnt = like_cnt;
+        this.post_img = post_img;
     }
 
     // Inflates the cell layout from xml when needed
@@ -56,16 +59,23 @@ public class QnAPostsRVAdapter extends RecyclerView.Adapter<QnAPostsRVAdapter.Vi
         Integer mview_cnt = view_cnt[position];
         Integer mcomment_cnt = comment_cnt[position];
         Integer mlike_cnt = like_cnt[position];
+        Integer mpost_img = post_img[position];
 
-        holder.l_eventTitle.setText(event_title);
-        holder.l_eventPrice.setText(event_price);
-        holder.myImageView.setImageResource(store_img);
+        holder.l_title.setText(mtitle);
+        holder.l_content.setText(mcontent);
+        holder.l_nickname.setText(mnickname);
+        holder.l_profile_img.setImageResource(mprofile_img);
+        holder.l_time.setText(Integer.toString(mtime));
+        holder.l_view.setText(Integer.toString(mview_cnt));
+        holder.l_comment.setText(Integer.toString(mcomment_cnt));
+        holder.l_like.setText(Integer.toString(mlike_cnt));
+        holder.l_post_img.setImageResource(mpost_img);
     }
 
     // Total number of cells
     @Override
     public int getItemCount() {
-        return meventTitle.length;
+        return title.length;
     }
 
     // Stores and recycles views as they are scrolled off screen
@@ -78,13 +88,20 @@ public class QnAPostsRVAdapter extends RecyclerView.Adapter<QnAPostsRVAdapter.Vi
         public TextView l_view;
         public TextView l_comment;
         public TextView l_like;
+        public ImageView l_post_img;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            l_title
-            l_eventTitle = (TextView)itemView.findViewById(R.id.store_event_title);
-            l_eventPrice = (TextView)itemView.findViewById(R.id.store_event_price);
-            myImageView = (ImageView)itemView.findViewById(R.id.store_img);
+            l_title = (TextView)itemView.findViewById(R.id.qna_title);
+            l_content = (TextView)itemView.findViewById(R.id.qna_content_preview);
+            l_nickname = (TextView)itemView.findViewById(R.id.qna_nickname);
+            l_profile_img = (ImageView)itemView.findViewById(R.id.qna_profile_img);
+            l_time = (TextView)itemView.findViewById(R.id.qna_time);
+            l_view = (TextView)itemView.findViewById(R.id.qna_view_cnt);
+            l_comment = (TextView)itemView.findViewById(R.id.qna_comment_cnt);
+            l_like = (TextView)itemView.findViewById(R.id.qna_like_cnt);
+            l_post_img = (ImageView)itemView.findViewById(R.id.qna_post_img);
+
             itemView.setOnClickListener(this);
         }
 
@@ -96,7 +113,7 @@ public class QnAPostsRVAdapter extends RecyclerView.Adapter<QnAPostsRVAdapter.Vi
 
     // Convenience method for getting data at click position
     public String getItem(int id) {
-        return meventTitle[id];
+        return title[id];
     }
 
     // Method that executes your code for the action received
