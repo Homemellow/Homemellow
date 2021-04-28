@@ -14,8 +14,10 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/qna_category_btn"
             android:layout_width="78dp"
-            android:layout_height="29dp"/>
+            android:layout_height="29dp"
+            android:background="@drawable/qna_post_button"/>
 
         <Spinner
             android:id="@+id/qna_spinner"

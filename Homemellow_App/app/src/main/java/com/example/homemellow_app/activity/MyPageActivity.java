@@ -1,6 +1,5 @@
 package com.example.homemellow_app.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,20 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.example.homemellow_app.R;
 
 public class MyPageActivity extends Fragment {
-
-    MainActivity mainActivity;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mainActivity = (MainActivity)getActivity();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mainActivity = null;
-    }
 
     @Nullable
     @Override

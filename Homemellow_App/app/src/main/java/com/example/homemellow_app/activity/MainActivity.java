@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("홈");
 
         mBottomNV = findViewById(R.id.nav_view);
         mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
         if (id == R.id.navigation_1) {
             toolbar.setTitle("홈");
-        } else if (id == R.id.navigation_2){
+    } else if (id == R.id.navigation_2){
             toolbar.setTitle("스토어");
         } else if (id == R.id.navigation_3){
             toolbar.setTitle("피드");

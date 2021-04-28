@@ -32,6 +32,10 @@
             android:name=".activity.EmailLoginActivity"
             android:parentActivityName=".activity.LoginActivity">
         </activity>
+        <activity
+            android:name=".activity.QnACategoryActivity"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
     </application>
 
 </manifest>

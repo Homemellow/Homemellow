@@ -1,8 +1,11 @@
 package com.example.homemellow_app.activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +24,6 @@ public class QnAActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.activity_store, container, false);
 
         String[] title = {"홈가드닝", "홈파밍", "홈트레이닝", "홈베이킹", "홈쿡", "홈바", "홈파티", "홈바캉스", "홈시네마", "홈뷰티", "인테리어", "공예"};
         String[] content = {"홈가드닝", "홈파밍", "홈트레이닝", "홈베이킹", "홈쿡", "홈바", "홈파티", "홈바캉스", "홈시네마", "홈뷰티", "인테리어", "공예"};
@@ -34,6 +36,14 @@ public class QnAActivity extends Fragment {
         int[] post_img = {R.drawable.kakao_login, R.drawable.asset_2, R.drawable.asset_3, R.drawable.asset_6, R.drawable.asset_12, R.drawable.asset_14, R.drawable.asset_8, R.drawable.asset_10, R.drawable.asset_11, R.drawable.asset_9, R.drawable.top_cart, R.drawable.top_cart};
 
         mBinding = ActivityQnaBinding.inflate(getLayoutInflater());
+
+        mBinding.qnaCategoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), QnACategoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mBinding.qnaPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.qnaPosts.setAdapter((new QnAPostsRVAdapter(getContext(), title, content, nickname, profile_img, time, view_cnt, comment_cnt, like_cnt, post_img)));
