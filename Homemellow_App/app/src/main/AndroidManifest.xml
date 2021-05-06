@@ -6,20 +6,35 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".activity.StoreActivity"
-            android:label="@string/app_name">
+            android:name=".activity.MainActivity"
+            android:parentActivityName=".activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.homemellow_app.activity.MainActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.JoinActivity"></activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.EmailLoginActivity"
+            android:parentActivityName=".activity.LoginActivity">
+        </activity>
+        <activity
+            android:name=".activity.QnACategoryActivity"
+            android:parentActivityName=".activity.MainActivity">
         </activity>
     </application>
 

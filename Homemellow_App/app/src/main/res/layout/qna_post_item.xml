@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="21dp"
+        android:paddingLeft="15dp"
+        android:layout_weight="4">
+
+        <TextView
+            android:id="@+id/qna_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="6sp"
+        android:text="라떼 만드는 팀 좀 부탁드려요!"
+        />
+
+        <TextView
+            android:id="@+id/qna_content_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:textColor="#707070"
+        android:lineSpacingExtra="6sp"
+        android:text="집에서 라떼를 만들어 먹는데 생각보다 맛이 ..."
+        android:layout_marginTop="8dp"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp" >
+
+            <com.example.homemellow_app.activity.RoundImageView
+                android:id="@+id/qna_profile_img"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/qna_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="4sp"
+                android:text="choixxxx"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/qna_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#707070"
+                android:lineSpacingExtra="4sp"
+                android:text="n시간"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#707070"
+                android:lineSpacingExtra="4sp"
+                android:text="전"
+                android:layout_marginRight="9dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#707070"
+                android:lineSpacingExtra="4sp"
+                android:text="조회"
+                />
+
+            <TextView
+                android:id="@+id/qna_view_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#f18705"
+                android:lineSpacingExtra="4sp"
+                android:text="5"
+                android:layout_marginRight="9dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#707070"
+                android:lineSpacingExtra="4sp"
+                android:text="댓글"
+                />
+
+            <TextView
+                android:id="@+id/qna_comment_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#f18705"
+                android:lineSpacingExtra="4sp"
+                android:text="5"
+                android:layout_marginRight="9dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#707070"
+                android:lineSpacingExtra="4sp"
+                android:text="공감"
+                />
+
+            <TextView
+                android:id="@+id/qna_like_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#f18705"
+                android:lineSpacingExtra="4sp"
+                android:text="5"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/qna_post_img"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:src="@drawable/ic_launcher_background"
+        android:paddingTop="21dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="6dp"
+        android:layout_weight="6"/>
+</LinearLayout>

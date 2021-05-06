@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="store_img">
+        <item>@drawable/asset_1</item>
+        <item>@drawable/asset_2</item>
+        <item>@drawable/asset_3</item>
+        <item>@drawable/asset_6</item>
+        <item>@drawable/asset_12</item>
+        <item>@drawable/asset_14</item>
+        <item>@drawable/asset_8</item>
+        <item>@drawable/asset_10</item>
+        <item>@drawable/asset_11</item>
+        <item>@drawable/asset_9</item>
+        <item>@drawable/top_cart</item>
+        <item>@drawable/top_cart</item>
+    </array>
+</resources>
