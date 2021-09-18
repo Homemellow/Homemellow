@@ -1,5 +1,6 @@
-## Project <Homemellow>
+## Homemellow
 커뮤니티 기능이 있는 쇼핑앱  
+AndroidApp(JAVA)  
 2021.05 프로젝트 중단(사유 : 기획면에서 경쟁앱과의 차별점을 찾지 못하였고, 기획 및 경영을 담당하던 대표가 프로젝트를 포기하면서 중단.)  
 
 - retrofit2를 이용한 http 통신
